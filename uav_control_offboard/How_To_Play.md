@@ -20,29 +20,29 @@ ros2 run uav_control_offboard waypoint_manager
 
 - (0, 0, 1.5), yaw=0
 ```
-ros2 topic pub --once /uav/goal_map geometry_msgs/PoseStamped "{header: {frame_id: map}, pose: {position: {x: 0.0, y: 0.0, z: 1.5}, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}}}"
+ros2 topic pub /uav/goal_map geometry_msgs/PoseStamped "{header: {frame_id: map}, pose: {position: {x: -115.0, y: 40.0, z: 1.5}, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}}}"
 ```
 
 - (2, 0, 1.5), yaw=0
 ```
-ros2 topic pub --once /uav/goal_map geometry_msgs/PoseStamped "{header: {frame_id: map}, pose: {position: {x: 2.0, y: 0.0, z: 1.5}, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}}}"
+ros2 topic pub /uav/goal_map geometry_msgs/PoseStamped "{header: {frame_id: map}, pose: {position: {x: 2.0, y: 0.0, z: 1.5}, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}}}"
 ```
 
 - (0, 2, 1.5), yaw=+90° (π/2)
 ```
-ros2 topic pub --once /uav/goal_map geometry_msgs/PoseStamped "{header: {frame_id: map}, pose: {position: {x: 0.0, y: 2.0, z: 1.5}, orientation: {x: 0.0, y: 0.0, z: 0.7071068, w: 0.7071068}}}"
+ros2 topic pub /uav/goal_map geometry_msgs/PoseStamped "{header: {frame_id: map}, pose: {position: {x: 0.0, y: 2.0, z: 1.5}, orientation: {x: 0.0, y: 0.0, z: 0.7071068, w: 0.7071068}}}"
 ```
 
 - (2, 2, 1.5), yaw=−90° (−π/2)
 ```
-ros2 topic pub --once /uav/goal_map geometry_msgs/PoseStamped "{header: {frame_id: map}, pose: {position: {x: 2.0, y: 2.0, z: 1.5}, orientation: {x: 0.0, y: 0.0, z: -0.7071068, w: 0.7071068}}}"
+ros2 topic pub /uav/goal_map geometry_msgs/PoseStamped "{header: {frame_id: map}, pose: {position: {x: 2.0, y: 2.0, z: 1.5}, orientation: {x: 0.0, y: 0.0, z: -0.7071068, w: 0.7071068}}}"
 ```
 
 ## B. odom 프레임으로 직접 발행(패스스루)
 
 - (2, 1, 1.5), yaw=0 (frame_id=odom)
 ```
-ros2 topic pub --once /uav/goal_map geometry_msgs/PoseStamped "{header: {frame_id: odom}, pose: {position: {x: 2.0, y: 1.0, z: 1.5}, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}}}"
+ros2 topic pub /uav/goal_map geometry_msgs/PoseStamped "{header: {frame_id: odom}, pose: {position: {x: 2.0, y: 1.0, z: 1.5}, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}}}"
 ```
 
 ## C. 주기 퍼블리시(5 Hz)
