@@ -1,0 +1,15 @@
+# Placeholder parameter file (no nodes yet). Documenting expected parameters.
+
+controller:
+  frame_world: odom           # ENU
+  topic_state: /uav/odom      # nav_msgs/Odometry
+  limits:
+    v_xy: 3.0                 # m/s
+    v_z: 1.0                  # m/s
+    yaw_rate: 1.0             # rad/s
+  pid:
+    x: [1.0, 0.2, 0.05]       # P I D
+    y: [1.0, 0.2, 0.05]
+    z: [1.5, 0.3, 0.05]
+    yaw: [1.5, 0.1, 0.0]
+
