@@ -1,0 +1,33 @@
+offboard_pid_goto:
+  ros__parameters:
+    use_sim_time: true
+    rate_hz: 50.0
+    arm_on_start: true
+    warmup_sec: 0.5
+
+    # Goal in ENU (odom frame)
+    # px4 command로 들어가는 /fmu/in/은 NED frame임(노드에서 변환됨)
+    goal_x: 0.0
+    goal_y: 0.0
+    goal_z: 3.0
+    goal_yaw: 0.0
+
+    # PID gains for xy control
+    kp_xy: 0.8
+    ki_xy: 0.0
+    kd_xy: 0.0
+
+    # PID gains for z control
+    kp_z: 0.8
+    ki_z: 0.0
+    kd_z: 0.0
+
+    # PID gains for yaw control
+    kp_yaw: 1.0
+    ki_yaw: 0.0
+    kd_yaw: 0.0
+
+    # Limits
+    max_speed_xy: 0.0
+    max_speed_z: 0.8
+    max_yawspeed: 0.8

@@ -1,0 +1,8 @@
+offboard_hover:
+  ros__parameters:
+    use_sim_time: true
+    rate_hz: 50.0
+    climb_m: 2.0
+    arm_on_start: true
+    warmup_sec: 0.5
+
