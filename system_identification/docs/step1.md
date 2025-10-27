@@ -77,15 +77,15 @@ $$
 * **각속도 (Angular Velocity):**
 
     * **옵션 1 (Rate Command Model):** 요 각속도($r^{cmd}$)를 직접 추종하는 경우
-        $$
-        \dot{\psi} = r^{cmd}
-        $$
+    $$
+    \dot{\psi} = r^{cmd}
+    $$
 
     * **옵션 2 (Angle Command Model):** (만약 인터페이스가 $\psi^{cmd}$를 받는 경우) 목표 각도를 추종하는 1차 시스템
-        $$
-        \dot{\psi} = -\frac{1}{T_\psi}(\psi - \psi^{cmd})
-        $$
-        (여기서 $T_\psi$는 자세 응답의 Time Constant 입니다.)
+    $$
+    \dot{\psi} = -\frac{1}{T_\psi}(\psi - \psi^{cmd})
+    $$
+    (여기서 $T_\psi$는 자세 응답의 Time Constant 입니다.)
 
 > 향후 가속도 입력형(더블 인티그레이터)로도 병행 예정.
 
