@@ -292,6 +292,9 @@ class OffboardPidGoto(Node):
             self.prev_ez = ez
             self.prev_eyaw = e_yaw
 
+        # Mode switch and arm after warm-up
+        self.try_arm_and_offboard()
+
     def ensure_yaw_correction(self) -> bool:
         if self.have_yaw_corr:
             return True
@@ -314,9 +317,6 @@ class OffboardPidGoto(Node):
             self.get_logger().warn(f'Waiting for TF map→odom to compute yaw correction: {e}')
             return False
         return True
-
-        # Mode switch and arm after warm-up
-        self.try_arm_and_offboard()
 
     def publish_goal_visualization(self):
         # PoseStamped in ENU (odom)

@@ -7,8 +7,8 @@ offboard_pid_goto:
 
     # Goal in ENU (odom frame)
     # px4 command로 들어가는 /fmu/in/은 NED frame임(노드에서 변환됨)
-    goal_x: 0.0
-    goal_y: 0.0
+    goal_x: 1.0
+    goal_y: 2.0
     goal_z: 3.0
     goal_yaw: 0.0
 
@@ -18,7 +18,7 @@ offboard_pid_goto:
     kd_xy: 0.0
 
     # PID gains for z control
-    kp_z: 0.8
+    kp_z: 3.0
     ki_z: 0.0
     kd_z: 0.0
 
@@ -28,6 +28,6 @@ offboard_pid_goto:
     kd_yaw: 0.0
 
     # Limits
-    max_speed_xy: 0.0
+    max_speed_xy: 0.8
     max_speed_z: 0.8
     max_yawspeed: 0.8
