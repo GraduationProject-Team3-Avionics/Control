@@ -8,7 +8,7 @@ import os
 
 def generate_launch_description():
     default_params = os.path.join(
-        get_package_share_directory('uav_control'), 'config', 'offboard_pid_goto.yaml'
+        get_package_share_directory('uav_control_pid'), 'config', 'offboard_pid_goto.yaml'
     )
 
     params_arg = DeclareLaunchArgument(
@@ -18,7 +18,7 @@ def generate_launch_description():
     )
 
     node = Node(
-        package='uav_control',
+        package='uav_control_pid',
         executable='offboard_pid_goto',
         name='offboard_pid_goto',
         output='screen',

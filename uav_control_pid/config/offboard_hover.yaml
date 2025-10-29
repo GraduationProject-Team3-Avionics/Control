@@ -5,4 +5,3 @@ offboard_hover:
     climb_m: 2.0
     arm_on_start: true
     warmup_sec: 0.5
-

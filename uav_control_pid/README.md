@@ -1,4 +1,4 @@
-# uav_control (ROS 2 × PX4 Offboard)
+# uav_control_pid (ROS 2 × PX4 Offboard)
 
 ROS 2 Humble에서 PX4 Offboard 제어를 실험·학습하기 위한 상위제어 패키지입니다. 이 패키지는 `/uav/odom`(ENU/FLU)을 단일 상태 입력으로 사용하고, PX4로 속도/위치 세트포인트를 지속 스트리밍합니다.
 
@@ -14,20 +14,20 @@ ROS 2 Humble에서 PX4 Offboard 제어를 실험·학습하기 위한 상위제�
 
 ## 파일 맵(핵심)
 - 노드
-  - `uav_control/offboard_hover.py`
-  - `uav_control/offboard_pid_goto.py`
+  - `uav_control_pid/offboard_hover.py`
+  - `uav_control_pid/offboard_pid_goto.py`
 - 런치
   - `launch/offboard_hover.launch.py`
   - `launch/offboard_pid_goto.launch.py`
 - 설정(YAML)
   - `config/offboard_hover.yaml`
   - `config/offboard_pid_goto.yaml`
-- 패키지 메타: `package.xml`, `setup.py`, `setup.cfg`, `resource/uav_control`
+- 패키지 메타: `package.xml`, `setup.py`, `setup.cfg`, `resource/uav_control_pid`
 
 ## 실행 순서(시뮬 기준)
 1) 빌드/소스
 ```
-colcon build --packages-select gazebo_env_setup uav_control px4_msgs
+colcon build --packages-select gazebo_env_setup uav_control_pid px4_msgs
 source install/setup.bash
 ```
 2) 브리지/TF/상태
@@ -43,10 +43,10 @@ MicroXRCEAgent udp4 -p 8888
 4) 제어 노드
 ```
 # 호버(위치 모드)
-ros2 launch uav_control offboard_hover.launch.py
+ros2 launch uav_control_pid offboard_hover.launch.py
 
 # PID GOTO(속도 모드)
-ros2 launch uav_control offboard_pid_goto.launch.py \
+ros2 launch uav_control_pid offboard_pid_goto.launch.py \
   goal_x:=0.0 goal_y:=0.0 goal_z:=2.0 goal_yaw:=0.0
 ```
 
@@ -103,4 +103,3 @@ ros2 launch uav_control offboard_pid_goto.launch.py \
 - TF 브로드캐스터: `src/Interface/gazebo_env_setup/src/pose_tf_broadcaster.cpp`
 
 ---
-

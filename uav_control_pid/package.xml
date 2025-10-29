@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="3">
-  <name>uav_control</name>
+  <name>uav_control_pid</name>
   <version>0.0.1</version>
   <description>PX4 Offboard hover demo (ROS 2, uses /uav/odom)</description>
   <maintainer email="imhyeonwoo21@gmail.com">imhyeonwoo</maintainer>

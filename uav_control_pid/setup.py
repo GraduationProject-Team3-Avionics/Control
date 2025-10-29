@@ -1,6 +1,6 @@
 from setuptools import setup
 
-package_name = 'uav_control'
+package_name = 'uav_control_pid'
 
 setup(
     name=package_name,
@@ -27,8 +27,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'offboard_hover = uav_control.offboard_hover:main',
-            'offboard_pid_goto = uav_control.offboard_pid_goto:main',
+            'offboard_hover = uav_control_pid.offboard_hover:main',
+            'offboard_pid_goto = uav_control_pid.offboard_pid_goto:main',
         ],
     },
 )

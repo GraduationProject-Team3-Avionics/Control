@@ -13,10 +13,10 @@ def generate_launch_description():
     use_sim_time = DeclareLaunchArgument('use_sim_time', default_value='true')
 
     # Default params file inside package share
-    default_params = os.path.join(get_package_share_directory('uav_control'), 'config', 'offboard_hover.yaml')
+    default_params = os.path.join(get_package_share_directory('uav_control_pid'), 'config', 'offboard_hover.yaml')
 
     n = Node(
-        package='uav_control',
+        package='uav_control_pid',
         executable='offboard_hover',
         name='offboard_hover',
         output='screen',
