@@ -9,4 +9,4 @@ tau_hat [s]        : 1.705057
 k_hat              : 1.115047
 RMSE one-step      : 0.007691
 RMSE free-run      : 0.062687
-plots              : src/Control/system_identification/data/z/vz_id_20251029_203233_input.png, src/Control/system_identification/data/z/vz_id_20251029_203233_plot.png
+plots              : src/Control/system_identification/data/z/vz_id_20251029_220111_input.png, src/Control/system_identification/data/z/vz_id_20251029_220111_plot.png

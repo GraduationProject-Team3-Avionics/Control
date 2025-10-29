@@ -11,8 +11,8 @@
   "rmse_one_step": 0.007690636066090956,
   "rmse_free_run": 0.06268745843876149,
   "plots": {
-    "input": "src/Control/system_identification/data/z/vz_id_20251029_203233_input.png",
-    "free_run": "src/Control/system_identification/data/z/vz_id_20251029_203233_plot.png"
+    "input": "src/Control/system_identification/data/z/vz_id_20251029_220111_input.png",
+    "free_run": "src/Control/system_identification/data/z/vz_id_20251029_220111_plot.png"
   },
-  "generated_at": "20251029_203233"
+  "generated_at": "20251029_220111"
 }

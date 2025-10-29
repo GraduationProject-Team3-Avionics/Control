@@ -1,0 +1,12 @@
+=== Z-axis ARX(2) Identification (NED z) ===
+csv                : /home/ihw/workspace/gp_ws/src/Control/system_identification/data/z/vz_step_log.csv
+samples_used       : 968 (after lag alignment; total 970)
+dt_median [s]      : 0.020004
+lag [samples]      : -29  (~-0.580 s)
+a1_hat             : 1.220905
+a2_hat             : -0.230568
+b1_hat             : 0.000831
+b2_hat             : 0.009764
+RMSE one-step      : 0.007473
+RMSE free-run      : 0.057029
+plots              : src/Control/system_identification/data/z/vz_id2_20251029_222048_input.png, src/Control/system_identification/data/z/vz_id2_20251029_222048_plot.png
