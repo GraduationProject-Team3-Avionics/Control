@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>uav_control_pid_cpp</name>
+  <version>0.0.1</version>
+  <description>C++ offboard PID controller for UAV (PX4) mirroring the Python implementation.</description>
+  <maintainer email="devnull@example.com">uav</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>nav_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>visualization_msgs</depend>
+  <depend>tf2_ros</depend>
+  <depend>tf2</depend>
+  <depend>px4_msgs</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
+
