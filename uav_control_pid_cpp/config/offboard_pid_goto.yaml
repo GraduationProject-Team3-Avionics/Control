@@ -6,8 +6,8 @@ offboard_pid_goto:
     warmup_sec: 0.5
 
     # Goal in ENU (odom frame)
-    goal_x: 1.0
-    goal_y: 2.0
+    goal_x: 0.0
+    goal_y: 0.0
     goal_z: 3.0
     goal_yaw: 0.0
 
@@ -19,7 +19,7 @@ offboard_pid_goto:
     # PID gains for z control
     kp_z: 3.0
     ki_z: 0.0
-    kd_z: 0.0
+    kd_z: 0.2
 
     # PID gains for yaw control
     kp_yaw: 1.0
@@ -28,9 +28,8 @@ offboard_pid_goto:
 
     # Limits
     max_speed_xy: 0.8
-    max_speed_z: 0.8
+    max_speed_z: 2.0
     max_yawspeed: 0.8
 
     # If odom is yaw-rotated relative to map
     apply_odom_to_map_yaw_correction: true
-
