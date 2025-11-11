@@ -33,8 +33,8 @@ class LqrZController : public rclcpp::Node {
     goal_z_ = this->declare_parameter<double>("goal_z", 3.0);
 
     // Identified discrete model (defaults are placeholders; set from identification)
-    a_ = this->declare_parameter<double>("a", 0.988336);     // from ARX(1)
-    b_ = this->declare_parameter<double>("b", 0.013005);    // from ARX(1)
+    a_ = this->declare_parameter<double>("a", 0.984804);     // from ARX(1)
+    b_ = this->declare_parameter<double>("b", 0.015636);    // from ARX(1)
     Ts_ = this->declare_parameter<double>("Ts", 0.02);   // median dt <=> Sampling Time(T_s)
 
     // LQR weights

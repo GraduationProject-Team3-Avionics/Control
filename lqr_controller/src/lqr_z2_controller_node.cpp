@@ -33,10 +33,10 @@ class LqrZ2Controller : public rclcpp::Node {
     goal_z_ = this->declare_parameter<double>("goal_z", 3.0);
 
     // Identified discrete ARX(2) model (defaults from identification summary)
-    a1_ = this->declare_parameter<double>("a1", 1.220905);
-    a2_ = this->declare_parameter<double>("a2", -0.230568);
-    b1_ = this->declare_parameter<double>("b1", 0.000831);
-    b2_ = this->declare_parameter<double>("b2", 0.009764);
+    a1_ = this->declare_parameter<double>("a1", 1.161027);
+    a2_ = this->declare_parameter<double>("a2", -0.174423);
+    b1_ = this->declare_parameter<double>("b1", 0.000113);
+    b2_ = this->declare_parameter<double>("b2", 0.013628);
     Ts_ = this->declare_parameter<double>("Ts", 0.02);
 
     // LQR weights
