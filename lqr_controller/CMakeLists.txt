@@ -12,15 +12,15 @@ find_package(visualization_msgs REQUIRED)
 # ──────────────── C++ 노드 ────────────────
 
 # C++ node for 1st order LQR Z controller
-add_executable(lqr_z_controller src/lqr_z1_controller_node.cpp)
-ament_target_dependencies(lqr_z_controller rclcpp nav_msgs px4_msgs std_msgs geometry_msgs visualization_msgs)
+add_executable(lqr_z1_controller src/lqr_z1_controller_node.cpp)
+ament_target_dependencies(lqr_z1_controller rclcpp nav_msgs px4_msgs std_msgs geometry_msgs visualization_msgs)
 
 # C++ node for 2nd order LQR Z controller
 add_executable(lqr_z2_controller src/lqr_z2_controller_node.cpp)
 ament_target_dependencies(lqr_z2_controller rclcpp nav_msgs px4_msgs std_msgs geometry_msgs visualization_msgs)
 
 install(TARGETS
-  lqr_z_controller
+  lqr_z1_controller
   lqr_z2_controller
   DESTINATION lib/${PROJECT_NAME}
 )

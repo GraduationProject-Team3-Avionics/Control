@@ -42,8 +42,8 @@ class LqrZ2Controller : public rclcpp::Node {
     // LQR weights
     qz_ = this->declare_parameter<double>("Q_z", 5.0);
     qv_ = this->declare_parameter<double>("Q_v", 1.0);
-    qv_prev_ = this->declare_parameter<double>("Q_v_prev", 0.0);
-    qu_prev_state_ = this->declare_parameter<double>("Q_u_prev_state", 0.0);
+    qv_prev_ = this->declare_parameter<double>("Q_v_prev", 0.05);
+    qu_prev_state_ = this->declare_parameter<double>("Q_u_prev_state", 0.01);
     r_  = this->declare_parameter<double>("R_u", 0.3);
 
     max_speed_z_ = this->declare_parameter<double>("max_speed_z", 2.0);
