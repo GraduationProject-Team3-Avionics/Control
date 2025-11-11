@@ -1,0 +1,12 @@
+=== Z-axis First-Order Identification (NED z) ===
+csv                : /home/ihw/workspace/gp_ws/src/Control/system_identification/data/z/vz_step_log.csv
+samples_used       : 3775 (after lag alignment)
+dt_median [s]      : 0.020003
+lag [samples]      : -24  (~-0.480 s)
+a_hat              : 0.984804
+b_hat              : 0.015636
+tau_hat [s]        : 1.306304
+k_hat              : 1.028943
+RMSE one-step      : 0.004614
+RMSE free-run      : 0.035168
+plots              : src/Control/system_identification/data/z/vz_id_20251112_024614_input.png, src/Control/system_identification/data/z/vz_id_20251112_024614_plot.png

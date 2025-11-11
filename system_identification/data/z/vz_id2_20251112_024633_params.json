@@ -1,0 +1,31 @@
+{
+  "csv": "/home/ihw/workspace/gp_ws/src/Control/system_identification/data/z/vz_step_log.csv",
+  "samples_used": 3773,
+  "total_used_after_align": 3775,
+  "dt_median": 0.020003080368041992,
+  "lag_samples": -24,
+  "lag_seconds": -0.4800739288330078,
+  "a1_hat": 1.1610273657935362,
+  "a2_hat": -0.17442323823381536,
+  "b1_hat": 0.00011291000026794725,
+  "b2_hat": 0.01362762191815486,
+  "rmse_one_step": 0.004535022300445171,
+  "rmse_free_run": 0.03278552867618215,
+  "discrete_poles": [
+    "(0.9837169787619606+0j)",
+    "(0.1773103870315755+0j)"
+  ],
+  "continuous_poles": [
+    "(-0.8207259186435313+0j)",
+    "(-86.47935474394413+0j)"
+  ],
+  "damping_est": {
+    "zeta": NaN,
+    "wn_rad_s": NaN
+  },
+  "plots": {
+    "input": "src/Control/system_identification/data/z/vz_id2_20251112_024633_input.png",
+    "free_run": "src/Control/system_identification/data/z/vz_id2_20251112_024633_plot.png"
+  },
+  "generated_at": "20251112_024633"
+}

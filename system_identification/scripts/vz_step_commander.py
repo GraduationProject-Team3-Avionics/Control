@@ -78,7 +78,7 @@ class VzStepCommander(Node):
         # 식별용 Step (ENU 기준 v_z_cmd, duration_s)
         default_steps = [0.5, 0.0, -0.5, 0.0]
         # Longer steps for clearer steady-state observation
-        default_durs = [6.0, 6.0, 6.0, 6.0]
+        default_durs = [20.0, 20.0, 20.0, 20.0]
         self.declare_parameter('step_values_enu', default_steps)
         self.declare_parameter('step_durations_s', default_durs)
 
