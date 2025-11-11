@@ -1,4 +1,4 @@
-// Z-axis LQR controller using identified ARX(1) model: v[k+1] = a v[k] + b u[k]
+// Z-axis LQR (1st-order) controller using identified ARX(1) model: v[k+1] = a v[k] + b u[k]
 // Augmented state: x = [z; v] with z[k+1] = z[k] + Ts v[k]
 // Control law: u = -K (x - x_ref), x_ref = [z_goal; 0]
 
@@ -24,7 +24,7 @@ inline double clamp(double x, double lo, double hi) {
 
 class LqrZController : public rclcpp::Node {
  public:
-  LqrZController() : rclcpp::Node("lqr_z_controller") {
+  LqrZController() : rclcpp::Node("lqr_z1_controller") {
     // Parameters
     rate_hz_ = this->declare_parameter<double>("rate_hz", 50.0);
     arm_on_start_ = this->declare_parameter<bool>("arm_on_start", true);
@@ -76,7 +76,7 @@ class LqrZController : public rclcpp::Node {
         std::bind(&LqrZController::tick, this));
 
     RCLCPP_INFO(get_logger(),
-                "lqr_z_controller @ %.1f Hz; goal_z=%.2f; a=%.3f b=%.3f Ts=%.3f; K=[%.3f %.3f]",
+                "lqr_z1_controller @ %.1f Hz; goal_z=%.2f; a=%.3f b=%.3f Ts=%.3f; K=[%.3f %.3f]",
                 rate_hz_, goal_z_, a_, b_, Ts_, Kz_, Kv_);
   }
 
