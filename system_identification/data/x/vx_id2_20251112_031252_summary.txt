@@ -1,0 +1,12 @@
+=== X-axis ARX(2) Identification (NED x) ===
+csv                : /home/ihw/workspace/gp_ws/src/Control/system_identification/data/x/vx_step_log.csv
+samples_used       : 3777 (after lag alignment; total 3779)
+dt_median [s]      : 0.020004
+lag [samples]      : -20  (~-0.400 s)
+a1_hat             : 1.308175
+a2_hat             : -0.311018
+b1_hat             : 0.000204
+b2_hat             : 0.003063
+RMSE one-step      : 0.001923
+RMSE free-run      : 0.047184
+plots              : src/Control/system_identification/data/x/vx_id2_20251112_031252_input.png, src/Control/system_identification/data/x/vx_id2_20251112_031252_plot.png

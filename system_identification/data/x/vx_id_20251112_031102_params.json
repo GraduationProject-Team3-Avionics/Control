@@ -1,0 +1,18 @@
+{
+  "csv": "/home/ihw/workspace/gp_ws/src/Control/system_identification/data/x/vx_step_log.csv",
+  "samples_used": 3779,
+  "dt_median": 0.0200040340423584,
+  "lag_samples": -20,
+  "lag_seconds": -0.40008068084716797,
+  "a_hat": 0.9959712651924894,
+  "b_hat": 0.004653910023079325,
+  "tau_hat": 4.95533024902776,
+  "k_hat": 1.1551790439031087,
+  "rmse_one_step": 0.0020249304475854486,
+  "rmse_free_run": 0.049348297494451694,
+  "plots": {
+    "input": "src/Control/system_identification/data/x/vx_id_20251112_031102_input.png",
+    "free_run": "src/Control/system_identification/data/x/vx_id_20251112_031102_plot.png"
+  },
+  "generated_at": "20251112_031102"
+}

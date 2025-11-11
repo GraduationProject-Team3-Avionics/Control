@@ -1,0 +1,12 @@
+=== X-axis First-Order Identification (NED x) ===
+csv                : /home/ihw/workspace/gp_ws/src/Control/system_identification/data/x/vx_step_log.csv
+samples_used       : 3779 (after lag alignment)
+dt_median [s]      : 0.020004
+lag [samples]      : -20  (~-0.400 s)
+a_hat              : 0.995971
+b_hat              : 0.004654
+tau_hat [s]        : 4.955330
+k_hat              : 1.155179
+RMSE one-step      : 0.002025
+RMSE free-run      : 0.049348
+plots              : src/Control/system_identification/data/x/vx_id_20251112_031102_input.png, src/Control/system_identification/data/x/vx_id_20251112_031102_plot.png

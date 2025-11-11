@@ -1,0 +1,31 @@
+{
+  "csv": "/home/ihw/workspace/gp_ws/src/Control/system_identification/data/x/vx_step_log.csv",
+  "samples_used": 3777,
+  "total_used_after_align": 3779,
+  "dt_median": 0.0200040340423584,
+  "lag_samples": -20,
+  "lag_seconds": -0.40008068084716797,
+  "a1_hat": 1.3081754503637384,
+  "a2_hat": -0.31101784173009656,
+  "b1_hat": 0.00020393622774213238,
+  "b2_hat": 0.00306251768932857,
+  "rmse_one_step": 0.001922939102682179,
+  "rmse_free_run": 0.04718379084800775,
+  "discrete_poles": [
+    "(0.9958667627243959+0j)",
+    "(0.3123086876393425+0j)"
+  ],
+  "continuous_poles": [
+    "(-0.20704837345076532+0j)",
+    "(-58.176425533279364+0j)"
+  ],
+  "damping_est": {
+    "zeta": NaN,
+    "wn_rad_s": NaN
+  },
+  "plots": {
+    "input": "src/Control/system_identification/data/x/vx_id2_20251112_031252_input.png",
+    "free_run": "src/Control/system_identification/data/x/vx_id2_20251112_031252_plot.png"
+  },
+  "generated_at": "20251112_031252"
+}
