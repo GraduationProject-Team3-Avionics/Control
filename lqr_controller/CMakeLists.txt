@@ -19,9 +19,14 @@ ament_target_dependencies(lqr_z1_controller rclcpp nav_msgs px4_msgs std_msgs ge
 add_executable(lqr_z2_controller src/lqr_z2_controller_node.cpp)
 ament_target_dependencies(lqr_z2_controller rclcpp nav_msgs px4_msgs std_msgs geometry_msgs visualization_msgs)
 
+# C++ node for 2nd order LQR X controller
+add_executable(lqr_x2_controller src/lqr_x2_controller_node.cpp)
+ament_target_dependencies(lqr_x2_controller rclcpp nav_msgs px4_msgs std_msgs geometry_msgs visualization_msgs)
+
 install(TARGETS
   lqr_z1_controller
   lqr_z2_controller
+  lqr_x2_controller
   DESTINATION lib/${PROJECT_NAME}
 )
 
