@@ -47,14 +47,24 @@ public:
     b2_ = this->declare_parameter<double>("b2", 0.00306251768932857);
     Ts_ = this->declare_parameter<double>("Ts", 0.020004);  // median dt
 
-    // LQR weights (초기값, 나중에 튜닝)
-    qx_            = this->declare_parameter<double>("Q_x", 8.0);   // 위치 오차 가중치
-    qv_            = this->declare_parameter<double>("Q_v", 20.0);    // 속도 가중치
-    qv_prev_       = this->declare_parameter<double>("Q_v_prev", 1.20);
-    qu_prev_state_ = this->declare_parameter<double>("Q_u_prev_state", 0.16);
-    r_             = this->declare_parameter<double>("R_u", 1.0);    // 입력 크기 가중치
+    // LQR weights (초기값)
+    // qx_            = this->declare_parameter<double>("Q_x", 8.0);   // 위치 오차 가중치
+    // qv_            = this->declare_parameter<double>("Q_v", 20.0);    // 속도 가중치
+    // qv_prev_       = this->declare_parameter<double>("Q_v_prev", 1.20);
+    // qv_prev_       = this->declare_parameter<double>("Q_v_prev", 1.20);
+    // qu_prev_state_ = this->declare_parameter<double>("Q_u_prev_state", 0.16);
+    // r_             = this->declare_parameter<double>("R_u", 1.0);    // 입력 크기 가중치
 
-    max_speed_x_ = this->declare_parameter<double>("max_speed_x", 2.0);  // [m/s]
+    // Overshoot가 큰 경우 완화용 보수적 기본값
+    // - Q_v를 높이고(Q_x 대비), R와 u_prev 가중치를 약간 올려 감쇠/완만 제어
+    // - max_speed_x를 낮춰 목표점 근방에서 제동 여유 확보
+    qx_            = this->declare_parameter<double>("Q_x", 8.0);     // 위치 오차 가중치(↓)
+    qv_            = this->declare_parameter<double>("Q_v", 24.0);    // 속도 가중치(↑, 감쇠 강화)
+    qv_prev_       = this->declare_parameter<double>("Q_v_prev", 1.20); // 이전 속도 가중치(약간 ↑)
+    qu_prev_state_ = this->declare_parameter<double>("Q_u_prev_state", 0.50); // 이전 입력 상태 가중치(↑)
+    r_             = this->declare_parameter<double>("R_u", 3.0);     // 입력 크기 가중치(↑)
+
+    max_speed_x_ = this->declare_parameter<double>("max_speed_x", 3.0);  // [m/s] (↓, 과도 속도 억제)
 
     // Subscriptions (odom: ENU 프레임)
     auto qos = rclcpp::QoS(rclcpp::KeepLast(5));
