@@ -72,9 +72,9 @@ class LqrZ2Controller : public rclcpp::Node {
     pub_goal_z_ = this->create_publisher<std_msgs::msg::Float64>(
         "/lqr/goal_z", 10);
     pub_goal_pose_ = this->create_publisher<geometry_msgs::msg::PoseStamped>(
-        "/lqr/goal_pose", 10);
+        "/lqr/goal_pose_z", 10);
     pub_goal_marker_ = this->create_publisher<visualization_msgs::msg::Marker>(
-        "/lqr/goal_marker", 10);
+        "/lqr/goal_marker_z", 10);
 
     // Initialize controller gain K from (a1,a2,b1,b2,Ts,Q,R)
     computeLqrGain();
