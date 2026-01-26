@@ -39,12 +39,19 @@ class LqrZ2Controller : public rclcpp::Node {
     b2_ = this->declare_parameter<double>("b2", 0.013628);
     Ts_ = this->declare_parameter<double>("Ts", 0.02);
 
-    // LQR weights
-    qz_ = this->declare_parameter<double>("Q_z", 5.0);
-    qv_ = this->declare_parameter<double>("Q_v", 1.0);
-    qv_prev_ = this->declare_parameter<double>("Q_v_prev", 0.05);
+    // LQR weights (1st attempt)
+    // qz_ = this->declare_parameter<double>("Q_z", 5.0);
+    // qv_ = this->declare_parameter<double>("Q_v", 1.0);
+    // qv_prev_ = this->declare_parameter<double>("Q_v_prev", 0.05);
+    // qu_prev_state_ = this->declare_parameter<double>("Q_u_prev_state", 0.01);
+    // r_  = this->declare_parameter<double>("R_u", 0.3);
+
+    // LQR weights (tuned for faster response)
+    qz_ = this->declare_parameter<double>("Q_z", 20.0);
+    qv_ = this->declare_parameter<double>("Q_v", 4.0);
+    qv_prev_ = this->declare_parameter<double>("Q_v_prev", 0.10);
     qu_prev_state_ = this->declare_parameter<double>("Q_u_prev_state", 0.01);
-    r_  = this->declare_parameter<double>("R_u", 0.3);
+    r_  = this->declare_parameter<double>("R_u", 0.15);
 
     max_speed_z_ = this->declare_parameter<double>("max_speed_z", 2.0);
 
@@ -65,9 +72,9 @@ class LqrZ2Controller : public rclcpp::Node {
     pub_goal_z_ = this->create_publisher<std_msgs::msg::Float64>(
         "/lqr/goal_z", 10);
     pub_goal_pose_ = this->create_publisher<geometry_msgs::msg::PoseStamped>(
-        "/lqr/goal_pose", 10);
+        "/lqr/goal_pose_z", 10);
     pub_goal_marker_ = this->create_publisher<visualization_msgs::msg::Marker>(
-        "/lqr/goal_marker", 10);
+        "/lqr/goal_marker_z", 10);
 
     // Initialize controller gain K from (a1,a2,b1,b2,Ts,Q,R)
     computeLqrGain();
