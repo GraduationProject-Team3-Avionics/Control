@@ -97,7 +97,7 @@ PX4가 처리: 신호 전달만 (믹서 포함)
 
 ### 3.1 좌표계 정의
 
-- **World Frame (W)**: ENU (East-North-Up) 좌표계
+- **World Frame(Navigation Frame) (W)**: ENU (East-North-Up) 좌표계
 - **Body Frame (B)**: FLU (Forward-Left-Up) 좌표계
 - **x**: 기체 전방
 - **y**: 기체 좌측
@@ -142,8 +142,22 @@ PX4가 처리: 신호 전달만 (믹서 포함)
 Newton의 제2법칙 적용:
 
 ```math
-m \ddot{\mathbf{p}} = \mathbf{R} \left[\begin{array}{c} 0 \\ 0 \\ T \end{array}\right] - \left[\begin{array}{c} 0 \\ 0 \\ mg \end{array}\right]
+m \ddot{\mathbf{p}} = \mathbf{C}_b^n \left[\begin{array}{c} 0 \\ 0 \\ T \end{array}\right] - \left[\begin{array}{c} 0 \\ 0 \\ mg \end{array}\right]
 ```
+
+※ $\mathbf{C}_b^n$ : Body Frame에서 Navigation Frame(World)으로의 DCM (Direction Cosine Matrix):
+
+```math
+\mathbf{C}_b^n = \left[\begin{array}{ccc}
+\cos\psi \cos\theta & \cos\psi \sin\theta \sin\phi - \sin\psi \cos\phi & \cos\psi \sin\theta \cos\phi + \sin\psi \sin\phi \\
+\sin\psi \cos\theta & \sin\psi \sin\theta \sin\phi + \cos\psi \cos\phi & \sin\psi \sin\theta \cos\phi - \cos\psi \sin\phi \\
+-\sin\theta & \cos\theta \sin\phi & \cos\theta \cos\phi
+\end{array}\right]
+```
+
+※ ZYX Euler 순서: $\psi \rightarrow \theta \rightarrow \phi$
+
+> 자세한 내용은 항법(Navigation) 공부 추천.
 
 전개하면:
 
@@ -187,6 +201,10 @@ Hover 상태 근방에서 작은 각도 가정 ($\sin\theta \approx \theta$, $\c
 ```math
 \ddot{p}_z \approx \frac{T - mg}{m} = \frac{\Delta T}{m}
 ```
+>Hover 상태 근방에서 선형화를 하는 이유는 대부분의 비행이 hover에 가깝기 때문임.
+
+> ※ 직관적으로 생각해보면 $\theta > 0$이면 기체가 앞쪽으로 기울어지고, $\phi > 0$이면 기체가 좌측으로 기울어진다는 것을 확인할 수 있음.
+(오른손 법칙)
 
 #### 상태공간 표현
 
@@ -216,7 +234,39 @@ B = \left[\begin{array}{ccc}
 \end{array}\right]
 ```
 
-입력 벡터: $\mathbf{u} = [\phi_d, \theta_d, \Delta T]^T$
+```math
+\dot{\mathbf{y}} = C\mathbf{x} + D\mathbf{u}
+```
+
+```math
+C = \left[
+\begin{array}{cccccc}
+1 & 0 & 0 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 & 1
+\end{array}
+\right]
+```
+
+```math
+D = \left[
+\begin{array}{ccc}
+0 & 0 & 0 \\
+0 & 0 & 0 \\
+0 & 0 & 0 \\
+0 & 0 & 0 \\
+0 & 0 & 0 \\
+0 & 0 & 0
+\end{array}
+\right]
+```
+
+>입력 벡터: $\mathbf{u} = [\phi_d, \theta_d, \Delta T]^T$
+
+>$\mathbf{y} = \mathbf{x}$ : Full-State Feedback
 
 ---
 
@@ -263,7 +313,7 @@ B = \left[\begin{array}{ccc}
 
 ---
 
-## 5. 제어 출력 계산
+## 5. 제어 출력 계산 (예시)
 
 ### 5.1 PD 제어로 원하는 가속도 계산
 
