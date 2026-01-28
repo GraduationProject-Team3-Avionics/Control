@@ -108,7 +108,7 @@ PX4가 처리: 신호 전달만 (믹서 포함)
 **전체 상태 (12차원):**
 
 ```math
-\mathbf{x} = \begin{bmatrix} p_x \\ p_y \\ p_z \\ v_x \\ v_y \\ v_z \\ \phi \\ \theta \\ \psi \\ p \\ q \\ r \end{bmatrix}
+\mathbf{x} = \left[\begin{array}{c} p_x \\ p_y \\ p_z \\ v_x \\ v_y \\ v_z \\ \phi \\ \theta \\ \psi \\ p \\ q \\ r \end{array}\right]
 ```
 
 - $(p_x, p_y, p_z)$: 위치 (World Frame)
@@ -119,7 +119,7 @@ PX4가 처리: 신호 전달만 (믹서 포함)
 **상위 제어기에서 사용하는 상태 (6차원):**
 
 ```math
-\mathbf{x}_{pos} = \begin{bmatrix} p_x \\ p_y \\ p_z \\ v_x \\ v_y \\ v_z \end{bmatrix}
+\mathbf{x}_{pos} = \left[\begin{array}{c} p_x \\ p_y \\ p_z \\ v_x \\ v_y \\ v_z \end{array}\right]
 ```
 
 ### 3.3 입력 벡터 (Input Vector)
@@ -127,7 +127,7 @@ PX4가 처리: 신호 전달만 (믹서 포함)
 **Attitude Level 제어 시 입력:**
 
 ```math
-\mathbf{u} = \begin{bmatrix} T \\ \phi_d \\ \theta_d \\ \psi_d \end{bmatrix}
+\mathbf{u} = \left[\begin{array}{c} T \\ \phi_d \\ \theta_d \\ \psi_d \end{array}\right]
 ```
 
 - $T$: 총 추력 (스칼라, Newton)
@@ -142,7 +142,7 @@ PX4가 처리: 신호 전달만 (믹서 포함)
 Newton의 제2법칙 적용:
 
 ```math
-m \ddot{\mathbf{p}} = \mathbf{R} \begin{bmatrix} 0 \\ 0 \\ T \end{bmatrix} - \begin{bmatrix} 0 \\ 0 \\ mg \end{bmatrix}
+m \ddot{\mathbf{p}} = \mathbf{R} \left[\begin{array}{c} 0 \\ 0 \\ T \end{array}\right] - \left[\begin{array}{c} 0 \\ 0 \\ mg \end{array}\right]
 ```
 
 전개하면:
@@ -195,25 +195,25 @@ Hover 상태 근방에서 작은 각도 가정 ($\sin\theta \approx \theta$, $\c
 ```
 
 ```math
-A = \begin{bmatrix}
+A = \left[\begin{array}{cccccc}
 0 & 0 & 0 & 1 & 0 & 0 \\
 0 & 0 & 0 & 0 & 1 & 0 \\
 0 & 0 & 0 & 0 & 0 & 1 \\
 0 & 0 & 0 & 0 & 0 & 0 \\
 0 & 0 & 0 & 0 & 0 & 0 \\
 0 & 0 & 0 & 0 & 0 & 0
-\end{bmatrix}
+\end{array}\right]
 ```
 
 ```math
-B = \begin{bmatrix}
+B = \left[\begin{array}{ccc}
 0 & 0 & 0 \\
 0 & 0 & 0 \\
 0 & 0 & 0 \\
 0 & g & 0 \\
 -g & 0 & 0 \\
 0 & 0 & \frac{1}{m}
-\end{bmatrix}
+\end{array}\right]
 ```
 
 입력 벡터: $\mathbf{u} = [\phi_d, \theta_d, \Delta T]^T$
