@@ -91,6 +91,10 @@ PX4가 처리: 신호 전달만 (믹서 포함)
 | 4. Rate | `vehicle_rates_setpoint` | 추력 + 각속도 | 각속도→모터 | ⭐⭐⭐⭐ |
 | 5. Actuator | `actuator_motors` | 모터 추력 | 믹서만 | ⭐⭐⭐⭐⭐ |
 
+> **핵심:** Level = "우리 제어기의 출력 = PX4의 입력"
+> - Level 숫자가 **높을수록**: 우리가 더 많이 제어, PX4가 덜 처리, 더 세밀한 제어 가능, 더 복잡한 모델 필요
+> - Level 숫자가 **낮을수록**: PX4가 더 많이 제어, 구현 간단, 덜 유연함
+
 ---
 
 ## 3. Quadrotor Dynamics Model
@@ -447,3 +451,57 @@ T_{hover} = m \cdot g = 2.0 \times 9.81 = 19.62 \text{ N}
 ### 파일 경로
 - 기체 모델: `/home/ihw/workspace/gp_ws/external/PX4-Autopilot_ASP/Tools/simulation/gz/models/x500_base/model.sdf`
 - 모터 설정: `/home/ihw/workspace/gp_ws/external/PX4-Autopilot_ASP/Tools/simulation/gz/models/x500/model.sdf`
+
+### FlowChart (Mermaid)
+
+```mermaid
+flowchart TB
+    subgraph Input["입력"]
+        ref["Reference<br/>(목표 위치/속도)"]
+        state["현재 상태<br/>x = [px, py, pz, vx, vy, vz]ᵀ"]
+    end
+
+    subgraph MPC["MPC Controller"]
+        direction TB
+        model["System Model<br/>ẋ = Ax + Bu<br/>(Linearized at Hover)"]
+        opt["Optimization<br/>min J = Σ(xᵀQx + uᵀRu)<br/>s.t. constraints"]
+        pred["Prediction Horizon<br/>N steps ahead"]
+    end
+
+    subgraph Output["MPC 출력"]
+        u_opt["Optimal Input<br/>u = [ϕd, θd, ΔT]ᵀ"]
+    end
+
+    subgraph Conversion["출력 변환"]
+        thrust["Thrust 계산<br/>T = mg + ΔT"]
+        quat["Quaternion 변환<br/>(ϕd, θd, ψd) → q"]
+    end
+
+    subgraph PX4["PX4 (Level 3: Attitude)"]
+        att_ctrl["Attitude Controller"]
+        rate_ctrl["Rate Controller"]
+        motor_mix["Motor Mixer"]
+    end
+
+    subgraph Drone["Quadrotor (x500)"]
+        plant["Plant<br/>m=2.0kg"]
+    end
+
+    ref --> MPC
+    state --> MPC
+    model --> opt
+    pred --> opt
+    opt --> u_opt
+    u_opt --> thrust
+    u_opt --> quat
+    thrust --> att_ctrl
+    quat --> att_ctrl
+    att_ctrl --> rate_ctrl
+    rate_ctrl --> motor_mix
+    motor_mix --> plant
+    plant -->|"Odometry<br/>/uav/odom"| state
+
+    style MPC fill:#e1f5fe
+    style PX4 fill:#fff3e0
+    style Drone fill:#e8f5e9
+```
