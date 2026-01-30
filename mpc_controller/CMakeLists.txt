@@ -32,6 +32,8 @@ find_package(px4_msgs REQUIRED)             # PX4 메시지
 # -------------------- Python 노드 --------------------
 install(PROGRAMS
   scripts/trajectory_publisher.py
+  scripts/mpc_core.py
+  scripts/mpc_controller_node.py
   DESTINATION lib/${PROJECT_NAME})
 
 # -------------------- C++ 바이너리 설치 ----------------

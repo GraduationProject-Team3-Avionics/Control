@@ -1,0 +1,29 @@
+# MPC Controller Parameters
+mpc_controller:
+  ros__parameters:
+    # ─────────── Model Parameters ───────────
+    mass: 2.0           # [kg] 기체 질량
+    gravity: 9.81       # [m/s^2]
+    dt: 0.05            # [s] 샘플링 시간 (20 Hz)
+    
+    # ─────────── MPC Parameters ───────────
+    horizon_N: 20       # Prediction horizon
+    
+    # 상태 가중치 Q: [px, py, pz, vx, vy, vz]
+    Q_pos: [50.0, 50.0, 100.0]  # 위치 가중치
+    Q_vel: [5.0, 5.0, 5.0]      # 속도 가중치
+    
+    # 입력 가중치 R: [phi_d, theta_d, delta_T]
+    R: [0.5, 0.5, 0.05]
+    
+    # ─────────── Constraints ───────────
+    phi_max_deg: 30.0       # [deg] Roll 제한
+    theta_max_deg: 30.0     # [deg] Pitch 제한
+    v_max: 3.0              # [m/s] 최대 속도
+    enable_state_constraints: true
+    
+    # ─────────── Control Rate ───────────
+    control_rate: 20.0      # [Hz] 제어 주기
+    
+    # ─────────── PX4 Options ───────────
+    auto_arm: false         # QGC 에서 수동 Arm할 경우 false
