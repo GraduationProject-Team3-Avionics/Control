@@ -6,6 +6,8 @@
 - HTTPS + 토큰은 환경/캐시 문제로 자주 실패
 - **SSH 방식이 가장 안정적이며 팀 프로젝트에 권장**
 
+## Personal Access Token 있으면 가장 아래로 이동
+
 ---
 
 ## 권장 방법: SSH로 Clone
@@ -101,3 +103,15 @@ git clone git@github.com:GraduationProject-Team3-Avionics/Control.git
 ```bash
 git clone git@github.com:GraduationProject-Team3-Avionics/Control.git
 ```
+---
+
+# TTPS + Personal Access Token (PAT) 사용 (더 편함)
+
+```bash
+git clone https://<your-username>:<personal-access-token>@github.com/GraduationProject-Team3-Avionics/Navigation.git
+```
+
+또는 clone 시 username/password를 물어볼 때:
+- Username: GitHub 사용자명
+- Password: Personal Access Token (비밀번호랑은 다른거임)
+- Token 발행받는거는 [여기](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) 참고
