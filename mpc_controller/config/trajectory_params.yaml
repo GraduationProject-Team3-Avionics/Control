@@ -1,0 +1,13 @@
+trajectory_publisher:
+  ros__parameters:
+    # 샘플링 시간 [s]
+    dt: 0.05
+    
+    # 경로 반복 여부
+    loop: true
+    
+    # 발행 주기 [Hz]
+    publish_rate: 20.0
+    
+    # 웨이포인트는 현재 코드에 하드코딩
+    # 추후 여기서 로드하도록 확장 가능

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>mpc_controller</name>
+  <version>0.0.1</version>
+  <description>Linear MPC controller for quadcopter trajectory tracking.</description>
+
+  <maintainer email="imhyeonwoo21@gmail.com">ihw</maintainer>
+  <license>Apache-2.0</license>
+
+  <!-- ───────── 빌드 도구 ───────── -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- ───────── 런타임·빌드 공통 의존성 ───────── -->
+  <depend>rclcpp</depend>
+  <depend>rclpy</depend>                 <!-- 파이썬 노드 있을 때 필수 -->
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>px4_msgs</depend>              <!-- PX4 메시지 -->
+
+  <!-- ───────── (옵션) 린트·테스트 ───────── -->
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
