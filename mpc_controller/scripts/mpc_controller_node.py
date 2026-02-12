@@ -214,23 +214,28 @@ class MPCControllerNode(Node):
         # Offboard 모드 heartbeat (항상 발행해야 함)
         self.publish_offboard_control_mode()
         
-        # 상태 체크
-        if self.current_state is None:
-            return
+        # 자동 Arm/Offboard (옵션)
+        if self.auto_arm:
+            self.offboard_setpoint_counter += 1
+            
+            # 상태 없으면 hover setpoint 발행 (PX4는 유효한 setpoint 스트림 필요)
+            if self.current_state is None:
+                self._publish_idle_setpoint()
+                return
+            
+            # 충분한 setpoint 발행 후 offboard → arm 순차 전환
+            if self.offboard_setpoint_counter >= 10 and not self.is_offboard:
+                self.engage_offboard_mode()
+            if self.offboard_setpoint_counter >= 15 and not self.is_armed:
+                self.arm()
+        else:
+            if self.current_state is None:
+                return
         
         if self.reference_state is None:
             # 레퍼런스 없으면 현재 위치 유지
             self.reference_state = self.current_state.copy()
             self.reference_state[3:] = 0  # 속도는 0
-        
-        # 자동 Arm/Offboard (옵션)
-        if self.auto_arm:
-            self.offboard_setpoint_counter += 1
-            
-            # 10개 이상의 setpoint 발행 후 offboard 모드 전환
-            if self.offboard_setpoint_counter == 10:
-                self.engage_offboard_mode()
-                self.arm()
         
         # MPC 풀이
         u_opt, success = mpc_solve(
@@ -249,6 +254,14 @@ class MPCControllerNode(Node):
         self.publish_attitude_setpoint(u_opt)
     
     # ─────────── Publishers ───────────
+    def _publish_idle_setpoint(self):
+        """상태 수신 전 기본 hover setpoint 발행 (PX4 offboard 진입용)"""
+        msg = VehicleAttitudeSetpoint()
+        msg.timestamp = int(self.get_clock().now().nanoseconds / 1000)
+        msg.q_d = [1.0, 0.0, 0.0, 0.0]  # 수평 자세 (identity quaternion)
+        msg.thrust_body = [0.0, 0.0, -0.5]  # hover 추력 (약 50%)
+        self.attitude_setpoint_pub.publish(msg)
+    
     def publish_offboard_control_mode(self):
         """Offboard 제어 모드 heartbeat 발행"""
         msg = OffboardControlMode()

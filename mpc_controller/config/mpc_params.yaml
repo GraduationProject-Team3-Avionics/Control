@@ -26,4 +26,4 @@ mpc_controller:
     control_rate: 20.0      # [Hz] 제어 주기
     
     # ─────────── PX4 Options ───────────
-    auto_arm: false         # QGC 에서 수동 Arm할 경우 false
+    auto_arm: true         # QGC 에서 수동 Arm할 경우 false

@@ -18,5 +18,7 @@ CMakeLists.txt의 find_package(px4_msgs REQUIRED)
 source install/setup.bash
 ```
 
+- 걍 귀찮아서 COLCON_IGNORE 파일 생성함.
+
 ### 깃클론 문제 (260126)
 - `How to Clone.md` 확인 바람.
