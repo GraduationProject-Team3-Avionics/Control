@@ -45,6 +45,7 @@ class OffboardPidGotoCpp : public rclcpp::Node {
         have_state_(false),
         armed_(false),
         offboard_(false),
+        last_cmd_time_sec_(0.0),
         prev_time_set_(false),
         yaw_map_to_odom_(0.0),
         have_yaw_corr_(false) {
@@ -181,20 +182,32 @@ class OffboardPidGotoCpp : public rclcpp::Node {
   }
 
   void tryArmAndOffboard() {
-    const double dt = (this->get_clock()->now() - start_time_).seconds();
-    if (dt < warmup_sec_) return;
-    if (arm_on_start_ && !armed_) {
+    const double elapsed = (this->get_clock()->now() - start_time_).seconds();
+    if (elapsed < warmup_sec_) return;
+
+    // Retry commands every 1 second until both succeed,
+    // because PX4 may silently reject the first attempts.
+    const double now_sec = this->get_clock()->now().seconds();
+    const bool should_retry = (now_sec - last_cmd_time_sec_) >= 1.0;
+
+    if (!offboard_ || should_retry) {
+      // OFFBOARD mode must be requested BEFORE arming.
+      // VEHICLE_CMD_DO_SET_MODE: custom(1), OFFBOARD(6)
+      sendVehicleCommand(176 /*VEHICLE_CMD_DO_SET_MODE*/, 1.0f, 6.0f);
+      if (!offboard_) {
+        RCLCPP_INFO(get_logger(), "Requested OFFBOARD mode");
+        offboard_ = true;
+      }
+    }
+    if (arm_on_start_ && (!armed_ || should_retry)) {
       // VEHICLE_CMD_COMPONENT_ARM_DISARM with ARMING_ACTION_ARM
       sendVehicleCommand(
           400 /*VEHICLE_CMD_COMPONENT_ARM_DISARM*/, 1.0f /*ARM*/);
-      RCLCPP_INFO(get_logger(), "Sent ARM command");
-      armed_ = true;
-    }
-    if (armed_ && !offboard_) {
-      // VEHICLE_CMD_DO_SET_MODE: custom(1), OFFBOARD(6)
-      sendVehicleCommand(176 /*VEHICLE_CMD_DO_SET_MODE*/, 1.0f, 6.0f);
-      RCLCPP_INFO(get_logger(), "Requested OFFBOARD mode");
-      offboard_ = true;
+      if (!armed_) {
+        RCLCPP_INFO(get_logger(), "Sent ARM command");
+        armed_ = true;
+      }
+      last_cmd_time_sec_ = now_sec;
     }
   }
 
@@ -378,6 +391,7 @@ class OffboardPidGotoCpp : public rclcpp::Node {
 
   bool armed_;
   bool offboard_;
+  double last_cmd_time_sec_;
   rclcpp::Time start_time_;
 
   // PID accumulators

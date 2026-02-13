@@ -6,8 +6,8 @@ offboard_pid_goto:
     warmup_sec: 0.5
 
     # Goal in ENU (odom frame)
-    goal_x: 0.0
-    goal_y: 0.0
+    goal_x: 1.0
+    goal_y: 2.0
     goal_z: 3.0
     goal_yaw: 0.0
 
