@@ -1,0 +1,6 @@
+# Trajectory Resampler Parameters
+trajectory_resampler_node:
+  ros__parameters:
+    desired_velocity: 1.0     # [m/s] 등속 비행 속도 (튜닝 시 조절)
+    dt: 0.05                  # [s]   리샘플링 간격 (MATLAB MPC dt와 일치)
+    interp_kind: 'cubic'      # 보간 방식: 'linear' / 'cubic'

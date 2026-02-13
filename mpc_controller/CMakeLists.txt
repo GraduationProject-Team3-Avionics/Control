@@ -15,7 +15,7 @@ find_package(rclpy REQUIRED)                # 파이썬 노드 있을 때도 선
 find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
-find_package(px4_msgs REQUIRED)             # PX4 메시지
+find_package(px4_msgs REQUIRED)            # PX4 메시지
 
 # 필요한 패키지 추가 시 여기에 find_package() 추가
 
@@ -31,9 +31,8 @@ find_package(px4_msgs REQUIRED)             # PX4 메시지
 
 # -------------------- Python 노드 --------------------
 install(PROGRAMS
-  scripts/trajectory_publisher.py
-  scripts/mpc_core.py
-  scripts/mpc_controller_node.py
+  scripts/trajectory_resampler_node.py       # 경로 리샘플링 노드
+  scripts/mpc_position_controller_node.py    # MPC 위치 제어 노드
   DESTINATION lib/${PROJECT_NAME})
 
 # -------------------- C++ 바이너리 설치 ----------------

@@ -16,7 +16,7 @@
   <depend>std_msgs</depend>
   <depend>geometry_msgs</depend>
   <depend>nav_msgs</depend>
-  <depend>px4_msgs</depend>              <!-- PX4 메시지 -->
+  <depend>px4_msgs</depend>                    <!-- PX4 메시지 -->
 
   <!-- ───────── (옵션) 린트·테스트 ───────── -->
   <test_depend>ament_lint_auto</test_depend>
